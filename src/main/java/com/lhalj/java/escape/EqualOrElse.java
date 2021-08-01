@@ -1,9 +1,6 @@
 package com.lhalj.java.escape;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author : 刘唯卿
@@ -12,7 +9,9 @@ import java.util.Set;
  */
 public class EqualOrElse {
 
-    public static class User {
+
+
+    public static class User implements Comparable<User>{
         private String name;
         private Integer age;
 
@@ -43,27 +42,42 @@ public class EqualOrElse {
         public boolean equals(Object obj){
             if(obj instanceof User){
                 User user = (User) obj;
-                return this.name.equals(user.name);
+                return this.name.equals(user.name) && this.age == user.age;
             }
             return false;
         }
 
+        //hashCode默认返回内存地址
         @Override
         public int hashCode(){
             int result = name.hashCode();
             result = 31 * result+age;
-
             return result;
         }
 
+        @Override
+        public int compareTo(User o) {
+            return (this.age - o.age) + this.name.compareTo(o.name);
+        }
     }
 
 
     /**
-     * 集合元素索引y与 qeuals方法相关
+     * 集合元素索引与 qeuals方法相关
      */
     private static void compareToAndEquals(){
+        List<User> users = new ArrayList<>();
+        users.add(new User("qiyi",10));
+        users.add(new User("qiyi",20));
 
+        User user = new User("qiyi",20);
+
+        //获取元素索引的位置 基于equal方法的比较 用的是比较name
+        int index1 = users.indexOf(user);
+        //通过集合的方式获取索引 基于compareTo
+        int index2 = Collections.binarySearch(users,user);
+        System.out.println(index1);
+        System.out.println(index2);
     }
 
 
@@ -73,6 +87,7 @@ public class EqualOrElse {
     private static void equalsAndHashcode(){
         User user1 = new User("qiyi",12);
         User user2 = new User("qiyi",12);
+
 //        System.out.println(user1.equals(user2));
 
         Set<User> userSet = new HashSet<>();
@@ -82,10 +97,15 @@ public class EqualOrElse {
         Map<User,Integer> userIntegerMap = new HashMap<>();
         userIntegerMap.put(user1,0);
         userIntegerMap.put(user2,0);
+
+        System.out.println(userSet.size());
+        System.out.println(userIntegerMap.size());
     }
 
     public static void main(String[] args) {
-        equalsAndHashcode();
+
+//        equalsAndHashcode();
+        compareToAndEquals();
     }
 
 
