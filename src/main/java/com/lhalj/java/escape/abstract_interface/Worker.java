@@ -25,6 +25,11 @@ public class Worker extends BaseWork implements IBaseWorking, IExtraWorking{
     }
 
     @Override
+    public void config() {
+
+    }
+
+    @Override
     public void extraCoding() {
 
     }
