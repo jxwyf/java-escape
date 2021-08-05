@@ -1,9 +1,7 @@
 package com.lhalj.java.escape.function_interface_lambda;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 描述:Lambda表达式的使用
@@ -60,6 +58,42 @@ public class StudyLambda {
                 return 1;
             return s1.length() - s2.length();
         });
+    }
+
+    /*
+     * 理解stream的中间操作和结束操作
+     */
+    private static void howToUseLambda(){
+
+        List<String> names = Arrays.asList("qiyi","21");
+
+        List<String> newNams = names.stream().filter(n ->n.startsWith("q"))
+                .map(n-> n.toUpperCase())
+                .collect(Collectors.toList());
+
+        System.out.println(newNams);
+    }
+
+    /*
+     * stream 和 lambda 可能导致计算失效
+     */
+    private static void badUseLambda(){
+        List<String> names = Arrays.asList("qiyi","21");
+
+        int longestNameSize = names.stream()
+                .filter(s -> s.startsWith("q"))
+                .mapToInt(String::length)
+                .max()
+                .getAsInt();
+
+        int longest = 0;
+
+        for (String str: names) {
+            if(str.startsWith("q")){
+                int len = str.length();
+                longest = Math.max(len,longest);
+            }
+        }
     }
 
 }
