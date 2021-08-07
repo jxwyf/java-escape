@@ -41,7 +41,7 @@ public class Main {
             System.out.println(superMethod.invoke(clz.newInstance(),"boss"));
         }
 
-        
+
     }
 
     private static Method getMethod(Class<?> target,
