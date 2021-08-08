@@ -32,6 +32,7 @@ public class StringContact {
         }
         System.out.println(result.toString());
     }
+
     public static void main(String[] args) {
         easyContact();
     }
