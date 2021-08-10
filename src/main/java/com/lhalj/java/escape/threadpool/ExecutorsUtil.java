@@ -1,6 +1,7 @@
 package com.lhalj.java.escape.threadpool;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,24 +15,55 @@ public class ExecutorsUtil extends ThreadPoolExecutor {
      * @return boolean
      */
     @Override
-    public boolean isShutdown() {
-        System.out.println(String.format(""));
-        return super.isShutdown();
+    public void shutdown() {
+        System.out.println(
+                String.format(this.poolName +
+                        "Going to shutdown. Executed tasks: %d," +
+                        "Running tasks: %d, Pending tasks: %d",
+                        this.getCompletedTaskCount(),
+                        this.getActiveCount(),
+                        this.getQueue().size()));
+
     }
 
     @Override
-    public boolean isTerminating() {
-        return super.isTerminating();
+    public List<Runnable> shutdownNow() {
+        System.out.println(
+                String.format(this.poolName +
+                                "Going to shutdownNow. Executed tasks: %d," +
+                                "Running tasks: %d, Pending tasks: %d",
+                        this.getCompletedTaskCount(),
+                        this.getActiveCount(),
+                        this.getQueue().size()));
+        return super.shutdownNow();
     }
+
 
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
-        super.beforeExecute(t, r);
+        startTimes.put(String.valueOf(r.hashCode()),new Date());
     }
+
 
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
-        super.afterExecute(r, t);
+
+        Date startTime = startTimes.remove(String.valueOf(r.hashCode()));
+        Date finishDate = new Date();
+        long diff = finishDate.getTime() - startTime.getTime();
+        System.out.println("任务执行时间"+diff);
+    }
+
+    public static ExecutorService newFixedThreadPool(int nThreads,String poolName){
+
+        return new ExecutorsUtil(
+                nThreads,
+                nThreads,
+                0L,
+                TimeUnit.MINUTES,
+                new LinkedBlockingDeque<>(),
+                poolName
+        );
     }
 
     private ConcurrentHashMap<String, Date> startTimes;
