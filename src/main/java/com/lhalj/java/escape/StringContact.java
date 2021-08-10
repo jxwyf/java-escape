@@ -6,6 +6,7 @@ package com.lhalj.java.escape;
  */
 public class StringContact {
 
+
     private static void easyContact(){
         String userNmae = "Qinyi";
         String age = "18";
