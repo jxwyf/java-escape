@@ -30,6 +30,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-escape/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-escape-v1/pom.xml" />
       </list>
     </option>
   </component>
