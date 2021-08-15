@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * <h1>应用上下文工具类</h1>
+ * 先获取应用上下文
+ * 通过应用上下文获取spring容器中的bean
  * */
 @Slf4j
 @Component
@@ -15,6 +17,7 @@ public class ApplicationUtils implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext = null;
 
+    //获取应用上下文
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {
