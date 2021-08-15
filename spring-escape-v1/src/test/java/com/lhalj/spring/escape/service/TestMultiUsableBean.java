@@ -32,7 +32,7 @@ public class TestMultiUsableBean {
     }
 
     @Autowired
-    //@Qualifier("imoocTemplateManagerService")
+    @Qualifier("imoocTemplateManagerService")
     private ITemplateManagerService service;
 
     @Test
