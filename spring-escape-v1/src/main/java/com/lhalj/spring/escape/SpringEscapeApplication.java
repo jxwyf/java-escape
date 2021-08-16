@@ -4,11 +4,13 @@ import com.lhalj.spring.escape.application_context.ApplicationContextStore;
 import com.lhalj.spring.escape.application_context.UseIntitiallizer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
 @SpringBootApplication
+@ServletComponentScan("com.lhalj.spring.escape") //spring boot 扫描过滤器
 @ComponentScan(value = {"com.lhalj.spring.escape","com.lhalj.spring.outer"})
 public class SpringEscapeApplication {
 
