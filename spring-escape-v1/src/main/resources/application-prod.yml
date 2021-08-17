@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: prod
   jpa:
     open-in-view: false
   datasource:
@@ -20,6 +18,6 @@ spring:
 
 ecsape:
   user:
-    name: qinyi-root
+    name: qinyi-prod
     age: 19
 
