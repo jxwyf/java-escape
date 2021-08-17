@@ -2,6 +2,11 @@ spring:
   profiles:
     active: prod
   task:
+#    execution:
+#      thread-name-prefix: imooc-2021-task-
+#      poll:
+#        core-size: 2
+#        max-size: 8
     scheduling:
       pool:
         size: 5

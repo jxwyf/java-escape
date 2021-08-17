@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 描述:
  */
 @Slf4j
-@Component
+//@Component
 public class ScheduledTask {
 
 

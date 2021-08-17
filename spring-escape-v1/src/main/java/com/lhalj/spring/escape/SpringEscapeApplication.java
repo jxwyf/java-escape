@@ -8,10 +8,12 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableAsync
 @SpringBootApplication
-@EnableScheduling //定时任务
+//@EnableScheduling //定时任务
 @ServletComponentScan("com.lhalj.spring.escape") //spring boot 扫描过滤器
 @ComponentScan(value = {"com.lhalj.spring.escape","com.lhalj.spring.outer"})
 public class SpringEscapeApplication {
