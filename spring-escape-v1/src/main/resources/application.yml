@@ -1,6 +1,10 @@
 spring:
   profiles:
     active: prod
+  task:
+    scheduling:
+      pool:
+        size: 5
   jpa:
     open-in-view: false
   datasource:
